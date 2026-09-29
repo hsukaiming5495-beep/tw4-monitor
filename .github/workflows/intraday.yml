@@ -1,0 +1,35 @@
+name: tw4-intraday
+# 盤中每 15 分鐘檢查是否觸及進場／停損／目標價（GitHub 排程可能延遲 5–15 分鐘）
+on:
+  schedule:
+    - cron: "*/15 1-5 * * 1-5"  # UTC 01:00–05:45 = 台北 09:00–13:45
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tw4-intraday
+  cancel-in-progress: true
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: 讀取今日已提醒紀錄
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: alerts-${{ github.run_id }}
+          restore-keys: alerts-
+      - name: 觸價檢查
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MOVE_ALERT_PCT: ${{ vars.MOVE_ALERT_PCT || '5' }}
+        run: node scripts/intraday.js
