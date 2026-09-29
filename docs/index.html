@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>四檔看盤台｜聯鈞・上詮・中華化・華星光</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+:root{
+  --bg:#EDF0F3; --panel:#FFFFFF; --panel2:#F6F8FA; --ink:#16202B; --muted:#5E6B78; --line:#D6DDE4;
+  --up:#D62B2B; --down:#128A53; --amber:#B97F00; --navy:#1F4E8C;
+  --ma5:#B97F00; --ma20:#1F6FD6; --ma60:#8A45C7;
+  --num:"Barlow Semi Condensed","Noto Sans TC",system-ui,sans-serif;
+  --txt:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1620; --panel:#152130; --panel2:#1A2838; --ink:#E4EBF2; --muted:#8B9BAC; --line:#26374A;
+    --up:#FF5252; --down:#2FCB7F; --amber:#F2B632; --navy:#7DB0FF;
+    --ma5:#F2B632; --ma20:#5AA2FF; --ma60:#C08BFF;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1620; --panel:#152130; --panel2:#1A2838; --ink:#E4EBF2; --muted:#8B9BAC; --line:#26374A;
+  --up:#FF5252; --down:#2FCB7F; --amber:#F2B632; --navy:#7DB0FF;
+  --ma5:#F2B632; --ma20:#5AA2FF; --ma60:#C08BFF;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--txt);font-size:15px;line-height:1.55}
+.num{font-family:var(--num);font-variant-numeric:tabular-nums}
+.up{color:var(--up)} .dn{color:var(--down)} .mut{color:var(--muted)}
+button{font:inherit;color:inherit}
+button:focus-visible,label:focus-within{outline:2px solid var(--navy);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding:14px 16px 40px}
+
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;justify-content:space-between;margin-bottom:12px}
+h1{font-size:22px;margin:0;font-weight:700;letter-spacing:.02em}
+.hdr-r{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.status{font-size:13px;color:var(--muted)}
+.btn{border:1px solid var(--line);background:var(--panel);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:14px}
+.btn.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+:root[data-theme="dark"] .btn.pri{color:#0E1620}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.pri{color:#0E1620}}
+input[type=file]{display:none}
+
+/* ticker strip — mirrors the broker quote list */
+.strip{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;overflow-x:auto}
+.tk{background:var(--panel);border:0;text-align:left;padding:10px 12px;cursor:pointer;display:grid;grid-template-columns:1fr auto;row-gap:2px;position:relative}
+.tk[aria-selected="true"]{background:var(--panel2)}
+.tk[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--navy)}
+.tk .nm{font-weight:700;font-size:16px}
+.tk .cd{font-size:12px;color:var(--muted)}
+.tk .px{font-family:var(--num);font-size:22px;font-weight:600;text-align:right;line-height:1.1}
+.tk .ch{font-family:var(--num);font-size:14px;text-align:right}
+.tk .sig{grid-column:1/3;font-size:12px;margin-top:4px}
+
+/* verdict band: the one bold element */
+.verdict{margin:14px 0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:18px;align-items:center}
+.v-call{font-size:34px;font-weight:700;line-height:1.15}
+.v-sub{font-size:14px;color:var(--muted);margin-top:4px}
+.dial{position:relative;height:54px}
+.dial-bar{position:absolute;left:0;right:0;top:18px;height:12px;border-radius:6px;
+  background:linear-gradient(90deg,var(--down) 0%,color-mix(in srgb,var(--down) 25%,var(--panel2)) 35%,var(--panel2) 50%,color-mix(in srgb,var(--up) 25%,var(--panel2)) 65%,var(--up) 100%)}
+.dial-needle{position:absolute;top:8px;width:4px;height:32px;margin-left:-2px;background:var(--ink);border-radius:2px;transition:left .5s cubic-bezier(.2,.8,.2,1)}
+.dial-needle span{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-family:var(--num);font-weight:700;font-size:15px;white-space:nowrap}
+.dial-lbl{position:absolute;top:34px;left:0;right:0;display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.dial-needle{transition:none}}
+
+.grid{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card h2{font-size:16px;margin:0 0 10px;font-weight:700}
+.card h3{font-size:14px;margin:14px 0 6px;color:var(--muted);font-weight:500}
+#chart{height:380px} #sub{height:150px;margin-top:6px}
+.tabs{display:flex;gap:4px;margin-top:10px}
+.tabs button{border:1px solid var(--line);background:transparent;padding:3px 10px;border-radius:5px;font-size:13px;cursor:pointer;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--panel2);color:var(--ink);border-color:var(--muted)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:6px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:4px}
+.empty{height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:20px}
+.empty b{color:var(--ink)}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:13px}
+td.r,th.r{text-align:right}
+.plan td:first-child{color:var(--muted);width:40%}
+.plan td:last-child{font-family:var(--num);font-size:17px;font-weight:600;text-align:right}
+.checks{list-style:none;margin:0;padding:0;font-size:14px}
+.checks li{padding:5px 0 5px 24px;position:relative;border-bottom:1px solid var(--line)}
+.checks li::before{position:absolute;left:0;top:5px;font-weight:700;width:18px;text-align:center}
+.checks li.p::before{content:"+";color:var(--up)} .checks li.n::before{content:"−";color:var(--down)} .checks li.z::before{content:"·";color:var(--muted)}
+.checks li .w{float:right;font-family:var(--num);color:var(--muted)}
+.note{font-size:14px;margin:8px 0 0}
+.risk{font-size:13px;color:var(--muted);margin:6px 0 0;padding-left:10px;border-left:3px solid var(--amber)}
+.trig{background:var(--panel2);border-radius:8px;padding:10px 12px;font-size:14px;margin-top:10px}
+.bt{font-size:13px;color:var(--muted);margin-top:10px}
+.cmp{margin-top:14px;overflow-x:auto}
+.cmp table{min-width:720px}
+.cmp tr{cursor:pointer}
+.cmp tr:hover td{background:var(--panel2)}
+.tag{display:inline-block;padding:1px 8px;border-radius:4px;font-size:13px;font-weight:500}
+.tag.L{background:color-mix(in srgb,var(--up) 14%,transparent);color:var(--up)}
+.tag.S{background:color-mix(in srgb,var(--down) 14%,transparent);color:var(--down)}
+.tag.W{background:var(--panel2);color:var(--muted)}
+.tag.H{background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)}
+footer{font-size:12px;color:var(--muted);margin-top:18px;line-height:1.7}
+dialog{border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);max-width:640px;width:calc(100% - 32px);padding:18px 20px}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h2{margin-top:0;font-size:18px}
+dialog code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:13px}
+dialog pre{background:var(--panel2);padding:10px;border-radius:6px;overflow-x:auto;font-size:13px}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .verdict{grid-template-columns:1fr}
+  .strip{grid-template-columns:repeat(2,minmax(150px,1fr))}
+  #chart{height:300px} .empty{height:300px}
+  .v-call{font-size:28px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>四檔看盤台</h1>
+    <div class="hdr-r">
+      <span class="status" id="status">未載入行情資料，顯示截圖報價與研究筆記</span>
+      <label class="btn pri" tabindex="0">載入資料<input type="file" id="file" accept=".json,application/json"></label>
+      <button class="btn" id="help">使用說明</button>
+      <button class="btn" id="theme" aria-label="切換深淺色">◐</button>
+    </div>
+  </header>
+
+  <div class="strip" role="tablist" id="strip"></div>
+
+  <section class="verdict" aria-live="polite">
+    <div>
+      <div class="v-call" id="vCall">—</div>
+      <div class="v-sub" id="vSub"></div>
+    </div>
+    <div class="dial" aria-hidden="true">
+      <div class="dial-bar"></div>
+      <div class="dial-needle" id="needle" style="left:50%"><span id="needleVal">0</span></div>
+      <div class="dial-lbl"><span>強力放空 −100</span><span>觀望 0</span><span>強力做多 +100</span></div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h2 id="chartTitle">K 線與均線</h2>
+        <div class="legend" id="legend">
+          <span><i style="background:var(--ma5)"></i>MA5</span>
+          <span><i style="background:var(--ma20)"></i>MA20 月線</span>
+          <span><i style="background:var(--ma60)"></i>MA60 季線</span>
+          <span>虛線：進場／停損／目標</span>
+        </div>
+        <div id="chartBox"></div>
+        <div class="tabs" id="subTabs">
+          <button data-k="macd" aria-pressed="true">MACD</button>
+          <button data-k="kd" aria-pressed="false">KD</button>
+          <button data-k="rsi" aria-pressed="false">RSI</button>
+        </div>
+        <div id="sub"></div>
+        <div class="bt" id="bt"></div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <h2>基本面與籌碼</h2>
+        <table id="facts"></table>
+        <p class="note" id="view"></p>
+        <p class="risk" id="risk"></p>
+        <div id="loadedFund"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2>進出場計畫</h2>
+        <table class="plan" id="plan"></table>
+        <div class="trig" id="trig"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h2>評分明細</h2>
+        <ul class="checks" id="checks"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card cmp">
+    <h2>四檔並列</h2>
+    <table id="cmp"></table>
+  </div>
+
+  <footer>
+    訊號由均線、MACD、KD、RSI、布林、量能、法人與融資券、月營收與本益比加權計算，僅作為紀律化進出的輔助，不構成投資建議。
+    放空前確認該股可融券（上詮、華星光為上櫃股）、避開停券期間（股東會、除權息前），並一律預掛停損。
+    研究筆記為 2026/09 公開資訊整理；行情由 GitHub Actions 每個交易日盤後自動更新。
+  </footer>
+</div>
+
+<dialog id="dlg">
+  <h2>資料怎麼更新</h2>
+  <p>這個頁面不能直接連線券商或交易所，行情由你電腦上的收集器抓取後載入：</p>
+  <p>雲端版由 GitHub Actions 每個交易日 18:30 自動抓取 FinMind 資料（股價、月營收、本益比、三大法人、融資券），更新本頁並推送 Telegram 盤後訊號；盤中每 15 分鐘檢查觸價。</p>
+  <p>要立即更新：到 GitHub 儲存庫 Actions → tw4-daily → Run workflow。也可手動按「載入資料」選任一份 <code>tw4_data.json</code>。</p>
+  <h2>訊號怎麼讀</h2>
+  <p><b>做多：突破</b>＝收盤創 20 日新高且量大於均量 1.5 倍；<b>做多：拉回</b>＝多頭排列（價&gt;月線&gt;季線）下回測月線、KD 金叉或 MACD 柱轉強。<b>放空：跌破</b>與<b>放空：反彈空</b>為鏡像條件。<b>過熱</b>＝RSI&gt;75 且站上布林上軌，不追多、等轉弱訊號試空。</p>
+  <p>停損 2×ATR、目標 2×／4×ATR。回測列出同一規則在過去一年的 10 日後報酬，樣本少時僅供參考。</p>
+  <button class="btn pri" onclick="this.closest('dialog').close()">關閉</button>
+</dialog>
+
+<script id="embedded-data" type="application/json">null</script>
+
+<script src="engine.js"></script>
+
+<script>
+/* ================= 研究筆記（2026/09 公開資訊） ================= */
+const NOTES={
+ "3450":{name:"聯鈞",market:"上市",ind:"光通訊封測／雷射元件",q:{p:513,chg:-7,pct:-1.35,vol:4819},
+  facts:[["8 月營收","12.48 億，年增 109.8%、月增 2.4%"],["1–8 月累計","75.30 億，年增 29.4%"],["7 月自結 EPS","1.02 元"],["2025 前三季 EPS","3.48 元"]],
+  view:"四檔中基本面最強：營收翻倍、AI 光通訊需求直接反映在獲利。定位為做多標的，策略是等拉回月線或帶量突破，不在長紅後追價。",
+  risk:"成長已大幅反映在股價；月營收若轉為月減、或投信連續調節，要先降部位。",bias:1},
+ "3363":{name:"上詮",market:"上櫃",ind:"光纖被動元件／CPO",q:{p:652,chg:9,pct:1.4,vol:1577},
+  facts:[["5 月營收","1.44 億，年減 24.8%"],["2025 全年營收","18.92 億，年增 38.7%"],["本益比（2026/03）","逾 4,000 倍"],["股價淨值比（6/5）","17.99 倍，產業平均 2.26 倍"]],
+  view:"股價由 CPO／矽光子題材驅動，獲利撐不起評價，6 月高點 908 已回落。四檔中最適合「技術面確認轉弱後放空」的標的。",
+  risk:"成交量小、題材消息一出容易軋空；只在跌破月線或反彈受壓時空，停損不可省。",bias:-1},
+ "1727":{name:"中華化",market:"上市",ind:"化工",q:{p:115.5,chg:-1,pct:-0.86,vol:47705},
+  facts:[["2025 全年營收","19.69 億，年減 5.5%"],["2025/12 營收","1.59 億，年增 25.1%"],["本益比（2026/01）","約 470 倍"],["股價路徑","1 月 47 → 6 月 96 → 8 月 76 → 現 115.5"]],
+  view:"營收未見明顯成長，股價卻從 47 漲到 115，截圖當日 4.7 萬張爆量收黑，屬資金輪動炒作型。高檔爆量不漲是空方優先觀察訊號。",
+  risk:"若公告新產品、轉型或月營收大增，行情可能延續；空單等跌破月線再進。",bias:-1},
+ "4979":{name:"華星光",market:"上櫃",ind:"光收發模組／CW 雷射",q:{p:563,chg:-27,pct:-4.58,vol:8542},
+  facts:[["8 月營收","5.46 億，年增 37.5%，歷史新高"],["7 月自結 EPS","0.92 元"],["上半年 EPS","2.91 元"],["產品","800G 已量產，400G 長距模組為主力"]],
+  view:"成長有獲利支撐，但 9/18 漲停到 611 後連日回落，截圖當日跌 4.6%。中期偏多、短線轉弱，等整理守住月線再佈局。",
+  risk:"常列注意股、波動大；收盤跌破季線代表題材退潮，應停損。",bias:1}
+};
+const CODES=["3450","3363","1727","4979"];
+
+/* ================= 狀態 ================= */
+let DATA=null, cur="3450", subKey="macd", charts=[];
+const $=id=>document.getElementById(id);
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt=(x,d=2)=>x==null||isNaN(x)?"—":Number(x).toLocaleString("zh-TW",{minimumFractionDigits:d,maximumFractionDigits:d});
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+function loadInitial(){
+  try{const e=JSON.parse($("embedded-data").textContent);if(e&&e.stocks){DATA=e;return"內嵌資料"}}catch(e){}
+  const s=store.get("tw4-data");if(s){try{const d=JSON.parse(s);if(d&&d.stocks){DATA=d;return"上次載入的資料"}}catch(e){}}
+  return null;
+}
+function results(){const o={};CODES.forEach(c=>o[c]=DATA&&DATA.stocks[c]?analyze(DATA.stocks[c]):null);return o}
+let RES={};
+
+function quote(code){
+  const A=RES[code];
+  if(A){const I=A.I,i=A.i;const chg=I.c[i]-I.c[i-1];return{p:I.c[i],chg,pct:chg/I.c[i-1]*100,vol:I.v[i],d:I.d[i]}}
+  return{...NOTES[code].q,d:"截圖報價"};
+}
+const cls=x=>x>0?"up":x<0?"dn":"mut";
+const arrow=x=>x>0?"▲":x<0?"▼":"";
+
+function renderStrip(){
+  $("strip").innerHTML=CODES.map(c=>{const q=quote(c),A=RES[c];const n=NOTES[c];
+    const sig=A?`<span class="tag ${SETUP[A.E.setup].cls}">${SETUP[A.E.setup].call}</span> <span class="num mut">${A.score>0?"+":""}${A.score}</span>`:`<span class="mut">研究傾向：${n.bias>0?"偏多":"偏空"}</span>`;
+    return`<button class="tk" role="tab" aria-selected="${c===cur}" data-c="${c}">
+      <span><span class="nm">${n.name}</span> <span class="cd">${c}・${n.market}</span></span>
+      <span class="px ${cls(q.chg)}">${fmt(q.p,q.p<200?2:1)}</span>
+      <span class="cd">${q.d}</span>
+      <span class="ch ${cls(q.chg)}">${arrow(q.chg)} ${fmt(Math.abs(q.chg),2)}　${fmt(Math.abs(q.pct),2)}%</span>
+      <span class="sig">${sig}</span></button>`}).join("");
+  $("strip").querySelectorAll(".tk").forEach(b=>b.onclick=()=>{cur=b.dataset.c;render()});
+}
+
+function renderVerdict(){
+  const A=RES[cur],n=NOTES[cur];
+  let score=0,call,sub;
+  if(A){const s=SETUP[A.E.setup];score=A.score;call=s.call;
+    sub=`${n.name} ${cur}｜資料至 ${A.I.d[A.i]}｜收盤 ${fmt(A.I.c[A.i])}、ATR ${fmt(A.I.atr[A.i])}`;
+    $("vCall").className="v-call "+(s.dir>0?"up":s.dir<0?"dn":"");}
+  else{call=n.bias>0?"研究偏多，待行情確認":"研究偏空，待行情確認";score=n.bias*25;
+    sub=`${n.name} ${cur}｜尚無 K 線資料，傾向來自基本面筆記；載入資料後會給出進場價位`;
+    $("vCall").className="v-call "+(n.bias>0?"up":"dn");}
+  $("vCall").textContent=call;$("vSub").textContent=sub;
+  $("needle").style.left=(50+score/2)+"%";$("needleVal").textContent=(score>0?"+":"")+score;
+}
+
+function clearCharts(){charts.forEach(c=>{try{c.remove()}catch(e){}});charts=[]}
+function renderChart(){
+  clearCharts();const A=RES[cur];const box=$("chartBox");
+  $("chartTitle").textContent=`${NOTES[cur].name} K 線與均線`;
+  if(!A){box.innerHTML=`<div class="empty"><b>還沒有 K 線資料</b><span>雲端資料尚未產生：到 GitHub Actions 手動執行一次 tw4-daily，或按右上「載入資料」。載入後會畫出 K 線、均線、MACD／KD／RSI，並算出進場、停損與目標價。</span><button class="btn pri" onclick="document.getElementById('file').click()">載入資料</button></div>`;$("sub").innerHTML="";$("subTabs").style.display="none";$("legend").style.display="none";$("bt").textContent="";return}
+  $("subTabs").style.display="";$("legend").style.display="";
+  if(typeof LightweightCharts==="undefined"){box.innerHTML=`<div class="empty"><b>圖表元件未載入</b><span>需要網路連線載入圖表程式庫；訊號與價位仍照常計算。</span></div>`;$("sub").innerHTML="";return}
+  box.innerHTML='<div id="chart"></div>';$("sub").innerHTML="";
+  const I=A.I;const base={layout:{background:{type:"solid",color:css("--panel")},textColor:css("--muted"),fontFamily:"Barlow Semi Condensed, Noto Sans TC, sans-serif"},
+    grid:{vertLines:{color:css("--line")},horzLines:{color:css("--line")}},rightPriceScale:{borderColor:css("--line")},
+    timeScale:{borderColor:css("--line")},crosshair:{mode:0},autoSize:true,localization:{locale:"zh-TW"}};
+  const ch=LightweightCharts.createChart($("chart"),base);charts.push(ch);
+  const UP=css("--up"),DN=css("--down");
+  const cs=ch.addCandlestickSeries({upColor:UP,downColor:DN,borderUpColor:UP,borderDownColor:DN,wickUpColor:UP,wickDownColor:DN});
+  cs.setData(I.d.map((d,i)=>({time:d,open:I.o[i],high:I.h[i],low:I.l[i],close:I.c[i]})));
+  const line=(arr,col)=>{const s=ch.addLineSeries({color:col,lineWidth:1.5,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+    s.setData(I.d.map((d,i)=>arr[i]==null?null:{time:d,value:arr[i]}).filter(Boolean));};
+  line(I.ma5,css("--ma5"));line(I.ma20,css("--ma20"));line(I.ma60,css("--ma60"));
+  const vol=ch.addHistogramSeries({priceFormat:{type:"volume"},priceScaleId:"vol",lastValueVisible:false,priceLineVisible:false});
+  ch.priceScale("vol").applyOptions({scaleMargins:{top:0.82,bottom:0}});
+  vol.setData(I.d.map((d,i)=>({time:d,value:I.v[i],color:(I.c[i]>=I.o[i]?UP:DN)+"66"})));
+  const colMap={navy:css("--navy"),up:UP,down:DN};
+  A.plan.lines.forEach(([p,t,c])=>cs.createPriceLine({price:p,color:colMap[c],lineWidth:1,lineStyle:2,axisLabelVisible:true,title:t}));
+  // 訊號標記（近一年）
+  const marks=[];for(let i=61;i<I.c.length;i++){const E=evalAt(I,i);if(!E)continue;const d=SETUP[E.setup].dir;
+    const prev=evalAt(I,i-1);if(prev&&SETUP[prev.setup].dir===d)continue;
+    if(d>0)marks.push({time:I.d[i],position:"belowBar",color:UP,shape:"arrowUp",text:E.setup==="LONG_BREAKOUT"?"突破":"拉回"});
+    if(d<0)marks.push({time:I.d[i],position:"aboveBar",color:DN,shape:"arrowDown",text:E.setup==="SHORT_BREAKDOWN"?"跌破":"反彈空"});}
+  cs.setMarkers(marks);
+  const n=I.d.length;ch.timeScale().setVisibleLogicalRange({from:Math.max(0,n-130),to:n+3});
+  renderSub(base);
+  const bt=A.bt;const f=s=>s?`${s.n} 次，勝率 ${(s.win*100).toFixed(0)}%，平均 ${(s.avg*100).toFixed(1)}%`:"無樣本";
+  $("bt").innerHTML=`同規則回測（進場後 10 個交易日報酬）　做多：${f(bt.L)}　｜　放空：${f(bt.S)}`;
+}
+function renderSub(base){
+  const A=RES[cur];if(!A||typeof LightweightCharts==="undefined")return;
+  if(charts.length>1){try{charts[1].remove()}catch(e){}charts.length=1}
+  $("sub").innerHTML="";const I=A.I;
+  const sc=LightweightCharts.createChart($("sub"),{...base,timeScale:{...base.timeScale,visible:false}});charts.push(sc);
+  const L=(arr,col,w=1.5)=>{const s=sc.addLineSeries({color:col,lineWidth:w,priceLineVisible:false,lastValueVisible:true,crosshairMarkerVisible:false});s.setData(I.d.map((d,i)=>arr[i]==null?null:{time:d,value:arr[i]}).filter(Boolean));return s};
+  if(subKey==="macd"){const h=sc.addHistogramSeries({priceLineVisible:false,lastValueVisible:false});
+    h.setData(I.d.map((d,i)=>I.hist[i]==null?null:{time:d,value:I.hist[i],color:I.hist[i]>=0?css("--up"):css("--down")}).filter(Boolean));
+    L(I.dif,css("--ma20"));L(I.sig,css("--ma5"));}
+  else if(subKey==="kd"){const k=L(I.K,css("--ma20"));L(I.D,css("--ma5"));
+    k.createPriceLine({price:80,color:css("--line"),lineStyle:2,lineWidth:1,axisLabelVisible:false});
+    k.createPriceLine({price:20,color:css("--line"),lineStyle:2,lineWidth:1,axisLabelVisible:false});}
+  else{const r=L(I.rsi,css("--ma60"));
+    r.createPriceLine({price:70,color:css("--line"),lineStyle:2,lineWidth:1,axisLabelVisible:false});
+    r.createPriceLine({price:30,color:css("--line"),lineStyle:2,lineWidth:1,axisLabelVisible:false});}
+  const main=charts[0];
+  const sync=r=>{if(r)sc.timeScale().setVisibleLogicalRange(r)};
+  main.timeScale().subscribeVisibleLogicalRangeChange(sync);sync(main.timeScale().getVisibleLogicalRange());
+}
+
+function renderSide(){
+  const A=RES[cur],n=NOTES[cur];
+  if(A){
+    $("plan").innerHTML=A.plan.rows.map(([k,v])=>{let c="";if(k==="方向")c=/多/.test(v)?"up":/空/.test(v)?"dn":"";
+      if(k.startsWith("停損"))c="mut";return`<tr><td>${k}</td><td class="${c}">${typeof v==="number"?fmt(v):v}</td></tr>`}).join("");
+    $("trig").textContent=A.plan.trig;
+    $("checks").innerHTML=A.items.slice().sort((a,b)=>Math.abs(b.w)-Math.abs(a.w)).map(x=>`<li class="${x.w>0?"p":x.w<0?"n":"z"}">${x.t}<span class="w">${x.w>0?"+":""}${x.w}</span></li>`).join("");
+  }else{
+    $("plan").innerHTML=`<tr><td>方向</td><td class="${n.bias>0?"up":"dn"}">${n.bias>0?"偏多，等技術面確認":"偏空，等技術面確認"}</td></tr><tr><td>截圖收盤</td><td>${fmt(n.q.p)}</td></tr>`;
+    $("trig").textContent="進場、停損、目標價需要至少 70 個交易日的 K 線才能計算。載入資料後這裡會換成具體價位與觸發條件。";
+    $("checks").innerHTML=`<li class="z">載入資料後列出每一項加減分：趨勢、MACD、KD、RSI、布林、量能、營收、本益比、法人、融資券。</li>`;
+  }
+  $("facts").innerHTML=n.facts.map(([k,v])=>`<tr><td class="mut" style="width:38%">${k}</td><td>${v}</td></tr>`).join("")+`<tr><td class="mut">產業</td><td>${n.ind}</td></tr>`;
+  $("view").textContent=n.view;$("risk").textContent=n.risk;
+  const S=DATA&&DATA.stocks[cur];let h="";
+  if(S){
+    const R=(S.revenue||[]).slice(-6).reverse();
+    if(R.length)h+=`<h3>月營收（載入資料）</h3><table><tr><th>月份</th><th class="r">營收（億）</th><th class="r">年增</th><th class="r">月增</th></tr>${R.map(r=>`<tr><td>${r.ym}</td><td class="r num">${fmt(r.rev/1e8)}</td><td class="r num ${cls(r.yoy)}">${r.yoy==null?"—":fmt(r.yoy,1)+"%"}</td><td class="r num ${cls(r.mom)}">${r.mom==null?"—":fmt(r.mom,1)+"%"}</td></tr>`).join("")}</table>`;
+    const P=(S.per||[]).slice(-1)[0];
+    if(P)h+=`<h3>評價（${P.d}）</h3><table><tr><td class="mut">本益比</td><td class="num">${P.per?fmt(P.per,1)+" 倍":"—"}</td><td class="mut">股價淨值比</td><td class="num">${fmt(P.pbr,2)} 倍</td></tr></table>`;
+    const N=(S.inst||[]).slice(-5).reverse();
+    if(N.length)h+=`<h3>三大法人（張）</h3><table><tr><th>日期</th><th class="r">外資</th><th class="r">投信</th><th class="r">自營</th></tr>${N.map(x=>`<tr><td>${x.d.slice(5)}</td>${["foreign","trust","dealer"].map(k=>`<td class="r num ${cls(x[k])}">${Math.round(x[k]||0).toLocaleString()}</td>`).join("")}</tr>`).join("")}</table>`;
+    const M=(S.margin||[]).slice(-1)[0];
+    if(M)h+=`<h3>信用交易（${M.d}）</h3><table><tr><td class="mut">融資餘額</td><td class="num">${Math.round(M.margin).toLocaleString()} 張</td><td class="mut">融券餘額</td><td class="num">${Math.round(M.short).toLocaleString()} 張</td></tr></table>`;
+  }
+  $("loadedFund").innerHTML=h;
+}
+
+function renderCmp(){
+  const head=`<tr><th>股票</th><th class="r">收盤</th><th class="r">漲跌%</th><th>訊號</th><th class="r">分數</th><th class="r">RSI</th><th class="r">K</th><th>月線</th><th class="r">營收年增</th><th class="r">本益比</th></tr>`;
+  $("cmp").innerHTML=head+CODES.map(c=>{const A=RES[c],q=quote(c),n=NOTES[c],S=DATA&&DATA.stocks[c];
+    const rev=S&&S.revenue&&S.revenue.length?S.revenue[S.revenue.length-1]:null;const pe=S&&S.per&&S.per.length?S.per[S.per.length-1]:null;
+    const sig=A?`<span class="tag ${SETUP[A.E.setup].cls}">${SETUP[A.E.setup].call}</span>`:`<span class="tag W">待資料（${n.bias>0?"偏多":"偏空"}）</span>`;
+    return`<tr data-c="${c}"><td><b>${n.name}</b> <span class="mut">${c}</span></td><td class="r num">${fmt(q.p)}</td><td class="r num ${cls(q.chg)}">${fmt(q.pct,2)}</td>
+    <td>${sig}</td><td class="r num">${A?(A.score>0?"+":"")+A.score:"—"}</td><td class="r num">${A?fmt(A.I.rsi[A.i],0):"—"}</td><td class="r num">${A?fmt(A.I.K[A.i],0):"—"}</td>
+    <td>${A?(A.I.c[A.i]>A.I.ma20[A.i]?'<span class="up">站上</span>':'<span class="dn">跌破</span>'):"—"}</td>
+    <td class="r num ${rev?cls(rev.yoy):""}">${rev&&rev.yoy!=null?fmt(rev.yoy,1)+"%":"—"}</td><td class="r num">${pe&&pe.per?fmt(pe.per,0):"—"}</td></tr>`}).join("");
+  $("cmp").querySelectorAll("tr[data-c]").forEach(r=>r.onclick=()=>{cur=r.dataset.c;render();window.scrollTo({top:0,behavior:"smooth"})});
+}
+
+function render(){renderStrip();renderVerdict();renderChart();renderSide();renderCmp()}
+
+function ingest(d,src){
+  if(!d||!d.stocks)throw new Error("檔案裡找不到 stocks 欄位，請用 tw4_collector.py 產生的 tw4_data.json");
+  DATA=d;RES=results();
+  const ok=CODES.filter(c=>RES[c]).length;
+  $("status").textContent=`${src}｜產生於 ${d.generated_at||"未知時間"}｜${ok}/4 檔可計算訊號`;
+}
+
+$("file").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result);ingest(d,"已載入 "+f.name);store.set("tw4-data",r.result);render()}catch(err){$("status").textContent="載入失敗："+err.message}};r.readAsText(f);e.target.value=""});
+$("help").onclick=()=>$("dlg").showModal();
+$("subTabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{subKey=b.dataset.k;$("subTabs").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderChart()});
+$("theme").onclick=()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;r.dataset.theme=dark?"light":"dark";store.set("tw4-theme",r.dataset.theme);renderChart()};
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>renderChart());
+(async function(){const t=store.get("tw4-theme");if(t)document.documentElement.dataset.theme=t;
+  let src=null;
+  try{const e=JSON.parse($("embedded-data").textContent);if(e&&e.stocks){DATA=e;src="內嵌資料"}}catch(e){}
+  if(!src){try{const r=await fetch("tw4_data.json?t="+Date.now(),{cache:"no-store"});if(r.ok){const d=await r.json();if(d&&d.stocks){DATA=d;src="雲端資料"}}}catch(e){}}
+  if(!src)src=loadInitial();
+  if(src){try{ingest(DATA,src)}catch(e){DATA=null}}render()})();
+</script>
+</body>
+</html>
