@@ -1,19 +1,19 @@
 {
- "updated": "2026-10-02 16:19",
- "lastDate": "2026-10-02",
+ "updated": "2026-10-05 19:21",
+ "lastDate": "2026-10-05",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-02",
-   "close": 123,
+   "date": "2026-10-05",
+   "close": 117.5,
    "setup": "WAIT_UP",
    "dir": 0,
-   "score": 47,
-   "atr": 8.49012114033824,
+   "score": 27,
+   "atr": 8.883683915344365,
    "lines": [
     {
-     "price": 101.25,
+     "price": 102.67,
      "label": "買區"
     },
     {
@@ -21,7 +21,7 @@
      "label": "20日高"
     },
     {
-     "price": 89.05,
+     "price": 89.48,
      "label": "季線"
     }
    ]
@@ -29,12 +29,12 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-02",
-   "close": 671,
+   "date": "2026-10-05",
+   "close": 664,
    "setup": "NEUTRAL",
    "dir": 0,
    "score": -7,
-   "atr": 37.0978545882896,
+   "atr": 36.233722120875605,
    "lines": [
     {
      "price": 850,
@@ -49,27 +49,27 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-02",
-   "close": 543,
+   "date": "2026-10-05",
+   "close": 548,
    "setup": "LONG_PULLBACK",
    "dir": 1,
-   "score": 39,
-   "atr": 33.464297954317125,
+   "score": 60,
+   "atr": 33.28827667299017,
    "lines": [
     {
-     "price": 543,
+     "price": 548,
      "label": "進場"
     },
     {
-     "price": 476.07,
+     "price": 481.42,
      "label": "停損"
     },
     {
-     "price": 609.93,
+     "price": 614.58,
      "label": "T1"
     },
     {
-     "price": 676.86,
+     "price": 681.15,
      "label": "T2"
     }
    ]
@@ -77,27 +77,27 @@
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-02",
-   "close": 585,
+   "date": "2026-10-05",
+   "close": 598,
    "setup": "LONG_PULLBACK",
    "dir": 1,
    "score": 31,
-   "atr": 35.51540666426473,
+   "atr": 34.76430618802977,
    "lines": [
     {
-     "price": 585,
+     "price": 598,
      "label": "進場"
     },
     {
-     "price": 513.97,
+     "price": 528.47,
      "label": "停損"
     },
     {
-     "price": 656.03,
+     "price": 667.53,
      "label": "T1"
     },
     {
-     "price": 727.06,
+     "price": 737.06,
      "label": "T2"
     }
    ]
