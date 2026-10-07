@@ -1,19 +1,19 @@
 {
- "updated": "2026-10-06 16:53",
- "lastDate": "2026-10-06",
+ "updated": "2026-10-07 17:29",
+ "lastDate": "2026-10-07",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-06",
+   "date": "2026-10-07",
    "close": 106,
    "setup": "WAIT_UP",
    "dir": 0,
-   "score": 25,
-   "atr": 9.07056363567691,
+   "score": 11,
+   "atr": 8.744094804183334,
    "lines": [
     {
-     "price": 103.23,
+     "price": 103.98,
      "label": "買區"
     },
     {
@@ -21,7 +21,7 @@
      "label": "20日高"
     },
     {
-     "price": 89.73,
+     "price": 90.01,
      "label": "季線"
     }
    ]
@@ -29,64 +29,84 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-06",
-   "close": 650,
-   "setup": "NEUTRAL",
-   "dir": 0,
-   "score": -7,
-   "atr": 36.074170540813064,
+   "date": "2026-10-07",
+   "close": 679,
+   "setup": "LONG_PULLBACK",
+   "dir": 1,
+   "score": 20,
+   "atr": 36.568872636200105,
    "lines": [
     {
-     "price": 808,
-     "label": "壓力"
+     "price": 679,
+     "label": "進場"
     },
     {
-     "price": 629,
-     "label": "支撐"
+     "price": 605.86,
+     "label": "停損"
+    },
+    {
+     "price": 752.14,
+     "label": "T1"
+    },
+    {
+     "price": 825.28,
+     "label": "T2"
     }
    ]
   },
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-06",
-   "close": 531,
-   "setup": "WAIT_UP",
-   "dir": 0,
-   "score": 33,
-   "atr": 32.839114053490874,
+   "date": "2026-10-07",
+   "close": 535,
+   "setup": "LONG_PULLBACK",
+   "dir": 1,
+   "score": 47,
+   "atr": 32.493463048701,
    "lines": [
     {
-     "price": 528.08,
-     "label": "買區"
+     "price": 535,
+     "label": "進場"
     },
     {
-     "price": 596,
-     "label": "20日高"
+     "price": 470.01,
+     "label": "停損"
     },
     {
-     "price": 508.31,
-     "label": "季線"
+     "price": 599.99,
+     "label": "T1"
+    },
+    {
+     "price": 664.97,
+     "label": "T2"
     }
    ]
   },
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-06",
-   "close": 568,
-   "setup": "NEUTRAL",
-   "dir": 0,
-   "score": -9,
-   "atr": 36.63828431745622,
+   "date": "2026-10-07",
+   "close": 579,
+   "setup": "LONG_PULLBACK",
+   "dir": 1,
+   "score": 31,
+   "atr": 36.66412114962942,
    "lines": [
     {
-     "price": 658,
-     "label": "壓力"
+     "price": 579,
+     "label": "進場"
     },
     {
-     "price": 501,
-     "label": "支撐"
+     "price": 505.67,
+     "label": "停損"
+    },
+    {
+     "price": 652.33,
+     "label": "T1"
+    },
+    {
+     "price": 725.66,
+     "label": "T2"
     }
    ]
   }
