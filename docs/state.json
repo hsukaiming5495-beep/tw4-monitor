@@ -1,19 +1,19 @@
 {
- "updated": "2026-10-07 17:29",
- "lastDate": "2026-10-07",
+ "updated": "2026-10-08 17:29",
+ "lastDate": "2026-10-08",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-07",
-   "close": 106,
+   "date": "2026-10-08",
+   "close": 107,
    "setup": "WAIT_UP",
    "dir": 0,
    "score": 11,
-   "atr": 8.744094804183334,
+   "atr": 8.655230889126127,
    "lines": [
     {
-     "price": 103.98,
+     "price": 104.8,
      "label": "買區"
     },
     {
@@ -21,7 +21,7 @@
      "label": "20日高"
     },
     {
-     "price": 90.01,
+     "price": 90.33,
      "label": "季線"
     }
    ]
@@ -29,27 +29,27 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-07",
-   "close": 679,
+   "date": "2026-10-08",
+   "close": 667,
    "setup": "LONG_PULLBACK",
    "dir": 1,
    "score": 20,
-   "atr": 36.568872636200105,
+   "atr": 35.09966744145261,
    "lines": [
     {
-     "price": 679,
+     "price": 667,
      "label": "進場"
     },
     {
-     "price": 605.86,
+     "price": 596.8,
      "label": "停損"
     },
     {
-     "price": 752.14,
+     "price": 737.2,
      "label": "T1"
     },
     {
-     "price": 825.28,
+     "price": 807.4,
      "label": "T2"
     }
    ]
@@ -57,56 +57,40 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-07",
-   "close": 535,
-   "setup": "LONG_PULLBACK",
-   "dir": 1,
-   "score": 47,
-   "atr": 32.493463048701,
+   "date": "2026-10-08",
+   "close": 522,
+   "setup": "NEUTRAL",
+   "dir": 0,
+   "score": -21,
+   "atr": 31.386787117501353,
    "lines": [
     {
-     "price": 535,
-     "label": "進場"
+     "price": 585,
+     "label": "壓力"
     },
     {
-     "price": 470.01,
-     "label": "停損"
-    },
-    {
-     "price": 599.99,
-     "label": "T1"
-    },
-    {
-     "price": 664.97,
-     "label": "T2"
+     "price": 489,
+     "label": "支撐"
     }
    ]
   },
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-07",
-   "close": 579,
-   "setup": "LONG_PULLBACK",
-   "dir": 1,
-   "score": 31,
-   "atr": 36.66412114962942,
+   "date": "2026-10-08",
+   "close": 565,
+   "setup": "NEUTRAL",
+   "dir": 0,
+   "score": -9,
+   "atr": 35.54525535152646,
    "lines": [
     {
-     "price": 579,
-     "label": "進場"
+     "price": 658,
+     "label": "壓力"
     },
     {
-     "price": 505.67,
-     "label": "停損"
-    },
-    {
-     "price": 652.33,
-     "label": "T1"
-    },
-    {
-     "price": 725.66,
-     "label": "T2"
+     "price": 501,
+     "label": "支撐"
     }
    ]
   }
