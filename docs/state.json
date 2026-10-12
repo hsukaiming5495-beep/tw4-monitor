@@ -1,55 +1,51 @@
 {
- "updated": "2026-10-09 17:07",
- "lastDate": "2026-10-08",
+ "updated": "2026-10-12 19:55",
+ "lastDate": "2026-10-12",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-08",
-   "close": 107,
-   "setup": "WAIT_UP",
+   "date": "2026-10-12",
+   "close": 103.5,
+   "setup": "NEUTRAL",
    "dir": 0,
-   "score": 11,
-   "atr": 8.655230889187894,
+   "score": -9,
+   "atr": 8.39414296830306,
    "lines": [
     {
-     "price": 104.8,
-     "label": "買區"
-    },
-    {
      "price": 130,
-     "label": "20日高"
+     "label": "壓力"
     },
     {
-     "price": 90.33,
-     "label": "季線"
+     "price": 86.2,
+     "label": "支撐"
     }
    ]
   },
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-08",
-   "close": 667,
-   "setup": "LONG_PULLBACK",
-   "dir": 1,
-   "score": 20,
-   "atr": 35.099667435595386,
+   "date": "2026-10-12",
+   "close": 602,
+   "setup": "SHORT_BREAKDOWN",
+   "dir": -1,
+   "score": -36,
+   "atr": 37.30683404102753,
    "lines": [
     {
-     "price": 667,
+     "price": 602,
      "label": "進場"
     },
     {
-     "price": 596.8,
+     "price": 698.86,
      "label": "停損"
     },
     {
-     "price": 737.2,
+     "price": 527.39,
      "label": "T1"
     },
     {
-     "price": 807.4,
+     "price": 452.77,
      "label": "T2"
     }
    ]
@@ -57,15 +53,15 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-08",
-   "close": 522,
+   "date": "2026-10-12",
+   "close": 519,
    "setup": "NEUTRAL",
    "dir": 0,
-   "score": -21,
-   "atr": 31.386787120142447,
+   "score": -16,
+   "atr": 30.35915947370566,
    "lines": [
     {
-     "price": 585,
+     "price": 574,
      "label": "壓力"
     },
     {
@@ -77,20 +73,28 @@
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-08",
-   "close": 565,
-   "setup": "NEUTRAL",
-   "dir": 0,
-   "score": -9,
-   "atr": 35.54525535156904,
+   "date": "2026-10-12",
+   "close": 582,
+   "setup": "LONG_PULLBACK",
+   "dir": 1,
+   "score": 44,
+   "atr": 34.86345139692382,
    "lines": [
     {
-     "price": 658,
-     "label": "壓力"
+     "price": 582,
+     "label": "進場"
     },
     {
-     "price": 501,
-     "label": "支撐"
+     "price": 512.27,
+     "label": "停損"
+    },
+    {
+     "price": 651.73,
+     "label": "T1"
+    },
+    {
+     "price": 721.45,
+     "label": "T2"
     }
    ]
   }
