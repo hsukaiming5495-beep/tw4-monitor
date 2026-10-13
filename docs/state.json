@@ -1,16 +1,16 @@
 {
- "updated": "2026-10-12 19:55",
- "lastDate": "2026-10-12",
+ "updated": "2026-10-13 17:42",
+ "lastDate": "2026-10-13",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-12",
-   "close": 103.5,
+   "date": "2026-10-13",
+   "close": 100,
    "setup": "NEUTRAL",
    "dir": 0,
    "score": -9,
-   "atr": 8.39414296830306,
+   "atr": 8.151704184852841,
    "lines": [
     {
      "price": 130,
@@ -25,27 +25,27 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-12",
-   "close": 602,
+   "date": "2026-10-13",
+   "close": 547,
    "setup": "SHORT_BREAKDOWN",
    "dir": -1,
    "score": -36,
-   "atr": 37.30683404102753,
+   "atr": 38.927774466668424,
    "lines": [
     {
-     "price": 602,
+     "price": 547,
      "label": "進場"
     },
     {
-     "price": 698.86,
+     "price": 692.13,
      "label": "停損"
     },
     {
-     "price": 527.39,
+     "price": 469.14,
      "label": "T1"
     },
     {
-     "price": 452.77,
+     "price": 391.29,
      "label": "T2"
     }
    ]
@@ -53,12 +53,12 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-12",
-   "close": 519,
+   "date": "2026-10-13",
+   "close": 473,
    "setup": "NEUTRAL",
    "dir": 0,
-   "score": -16,
-   "atr": 30.35915947370566,
+   "score": -3,
+   "atr": 31.690648082726682,
    "lines": [
     {
      "price": 574,
@@ -73,28 +73,20 @@
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-12",
-   "close": 582,
-   "setup": "LONG_PULLBACK",
-   "dir": 1,
-   "score": 44,
-   "atr": 34.86345139692382,
+   "date": "2026-10-13",
+   "close": 535,
+   "setup": "NEUTRAL",
+   "dir": 0,
+   "score": -3,
+   "atr": 36.51606201142926,
    "lines": [
     {
-     "price": 582,
-     "label": "進場"
+     "price": 650,
+     "label": "壓力"
     },
     {
-     "price": 512.27,
-     "label": "停損"
-    },
-    {
-     "price": 651.73,
-     "label": "T1"
-    },
-    {
-     "price": 721.45,
-     "label": "T2"
+     "price": 501,
+     "label": "支撐"
     }
    ]
   }
