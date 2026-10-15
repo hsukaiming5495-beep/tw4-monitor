@@ -1,16 +1,16 @@
 {
- "updated": "2026-10-14 15:20",
- "lastDate": "2026-10-14",
+ "updated": "2026-10-15 15:11",
+ "lastDate": "2026-10-15",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-14",
-   "close": 102,
+   "date": "2026-10-15",
+   "close": 96.1,
    "setup": "NEUTRAL",
    "dir": 0,
    "score": -3,
-   "atr": 7.89086817177899,
+   "atr": 7.748663302481219,
    "lines": [
     {
      "price": 130,
@@ -25,12 +25,12 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-14",
-   "close": 559,
+   "date": "2026-10-15",
+   "close": 520,
    "setup": "NEUTRAL",
    "dir": 0,
    "score": -13,
-   "atr": 38.21864770431036,
+   "atr": 38.77445858564095,
    "lines": [
     {
      "price": 699,
@@ -45,19 +45,19 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-14",
-   "close": 500,
+   "date": "2026-10-15",
+   "close": 467.5,
    "setup": "NEUTRAL",
    "dir": 0,
-   "score": -9,
-   "atr": 32.462744652442105,
+   "score": -3,
+   "atr": 32.89397718007915,
    "lines": [
     {
      "price": 574,
      "label": "壓力"
     },
     {
-     "price": 470,
+     "price": 465.5,
      "label": "支撐"
     }
    ]
@@ -65,28 +65,20 @@
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-14",
-   "close": 588,
-   "setup": "LONG_PULLBACK",
-   "dir": 1,
-   "score": 53,
-   "atr": 37.90777186775574,
+   "date": "2026-10-15",
+   "close": 542,
+   "setup": "NEUTRAL",
+   "dir": 0,
+   "score": 13,
+   "atr": 38.70007387907607,
    "lines": [
     {
-     "price": 588,
-     "label": "進場"
+     "price": 650,
+     "label": "壓力"
     },
     {
-     "price": 512.18,
-     "label": "停損"
-    },
-    {
-     "price": 663.82,
-     "label": "T1"
-    },
-    {
-     "price": 739.63,
-     "label": "T2"
+     "price": 501,
+     "label": "支撐"
     }
    ]
   }
