@@ -1,23 +1,23 @@
 {
- "updated": "2026-10-19 17:04",
- "lastDate": "2026-10-19",
+ "updated": "2026-10-20 15:16",
+ "lastDate": "2026-10-20",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-19",
-   "close": 97,
+   "date": "2026-10-20",
+   "close": 96.2,
    "setup": "NEUTRAL",
    "dir": 0,
-   "score": -3,
-   "atr": 7.244510704318118,
+   "score": 11,
+   "atr": 7.0341885111525375,
    "lines": [
     {
      "price": 130,
      "label": "壓力"
     },
     {
-     "price": 90.9,
+     "price": 94.8,
      "label": "支撐"
     }
    ]
@@ -25,23 +25,23 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-19",
-   "close": 535,
+   "date": "2026-10-20",
+   "close": 517,
    "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -27,
-   "atr": 36.91267093272342,
+   "score": -24,
+   "atr": 36.70462300895747,
    "lines": [
     {
-     "price": 626.05,
+     "price": 619.15,
      "label": "空區"
     },
     {
-     "price": 513,
+     "price": 505,
      "label": "20日低"
     },
     {
-     "price": 629.72,
+     "price": 628.52,
      "label": "季線"
     }
    ]
@@ -49,39 +49,43 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-19",
-   "close": 444,
-   "setup": "NEUTRAL",
+   "date": "2026-10-20",
+   "close": 430.5,
+   "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": 4,
-   "atr": 32.26572522758925,
+   "score": -23,
+   "atr": 31.603887711332874,
    "lines": [
     {
-     "price": 574,
-     "label": "壓力"
+     "price": 508.75,
+     "label": "空區"
     },
     {
-     "price": 448,
-     "label": "支撐"
+     "price": 426.5,
+     "label": "20日低"
+    },
+    {
+     "price": 511.91,
+     "label": "季線"
     }
    ]
   },
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-19",
-   "close": 480,
+   "date": "2026-10-20",
+   "close": 470,
    "setup": "NEUTRAL",
    "dir": 0,
-   "score": -3,
-   "atr": 39.868941257429164,
+   "score": 4,
+   "atr": 39.449731167612796,
    "lines": [
     {
      "price": 650,
      "label": "壓力"
     },
     {
-     "price": 510,
+     "price": 468,
      "label": "支撐"
     }
    ]
