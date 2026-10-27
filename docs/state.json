@@ -1,23 +1,23 @@
 {
- "updated": "2026-10-26 16:52",
- "lastDate": "2026-10-22",
+ "updated": "2026-10-27 15:56",
+ "lastDate": "2026-10-27",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-22",
-   "close": 93.2,
+   "date": "2026-10-27",
+   "close": 91.4,
    "setup": "NEUTRAL",
    "dir": 0,
-   "score": 4,
-   "atr": 6.9049890754136625,
+   "score": -9,
+   "atr": 6.676061284312687,
    "lines": [
     {
      "price": 130,
      "label": "壓力"
     },
     {
-     "price": 94.8,
+     "price": 93.2,
      "label": "支撐"
     }
    ]
@@ -25,23 +25,23 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-22",
-   "close": 506,
+   "date": "2026-10-27",
+   "close": 499.5,
    "setup": "WAIT_DOWN",
    "dir": 0,
    "score": -40,
-   "atr": 37.485108637372385,
+   "atr": 36.4861723061315,
    "lines": [
     {
-     "price": 604.7,
+     "price": 596.67,
      "label": "空區"
     },
     {
-     "price": 505,
+     "price": 503,
      "label": "20日低"
     },
     {
-     "price": 626.43,
+     "price": 625.78,
      "label": "季線"
     }
    ]
@@ -49,23 +49,23 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-22",
-   "close": 424,
+   "date": "2026-10-27",
+   "close": 429,
    "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -43,
-   "atr": 31.234984824387855,
+   "score": -29,
+   "atr": 30.503914479788723,
    "lines": [
     {
-     "price": 498.3,
+     "price": 493.45,
      "label": "空區"
     },
     {
-     "price": 426.5,
+     "price": 423,
      "label": "20日低"
     },
     {
-     "price": 512.06,
+     "price": 512.46,
      "label": "季線"
     }
    ]
@@ -73,20 +73,24 @@
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-22",
-   "close": 450,
-   "setup": "NEUTRAL",
+   "date": "2026-10-27",
+   "close": 467.5,
+   "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": 4,
-   "atr": 38.55614574977232,
+   "score": -16,
+   "atr": 37.23070676764572,
    "lines": [
     {
-     "price": 650,
-     "label": "壓力"
+     "price": 543.17,
+     "label": "空區"
     },
     {
-     "price": 466,
-     "label": "支撐"
+     "price": 445,
+     "label": "20日低"
+    },
+    {
+     "price": 543.93,
+     "label": "季線"
     }
    ]
   }
