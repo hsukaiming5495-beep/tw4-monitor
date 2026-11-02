@@ -1,23 +1,23 @@
 {
- "updated": "2026-10-30 16:46",
- "lastDate": "2026-10-30",
+ "updated": "2026-11-02 20:28",
+ "lastDate": "2026-11-02",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-10-30",
-   "close": 90.5,
+   "date": "2026-11-02",
+   "close": 89.5,
    "setup": "NEUTRAL",
    "dir": 0,
-   "score": 20,
-   "atr": 6.259404754502475,
+   "score": 13,
+   "atr": 6.040875842594992,
    "lines": [
     {
      "price": 130,
      "label": "壓力"
     },
     {
-     "price": 91,
+     "price": 88.3,
      "label": "支撐"
     }
    ]
@@ -25,23 +25,23 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-10-30",
-   "close": 474.5,
+   "date": "2026-11-02",
+   "close": 458,
    "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -60,
-   "atr": 37.65875383109826,
+   "score": -44,
+   "atr": 37.504557126860924,
    "lines": [
     {
-     "price": 574.2,
+     "price": 564.65,
      "label": "空區"
     },
     {
-     "price": 486,
+     "price": 448,
      "label": "20日低"
     },
     {
-     "price": 627.35,
+     "price": 626.23,
      "label": "季線"
     }
    ]
@@ -49,23 +49,23 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-10-30",
-   "close": 409,
+   "date": "2026-11-02",
+   "close": 415,
    "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -36,
-   "atr": 30.549052513451795,
+   "score": -23,
+   "atr": 30.509834478120062,
    "lines": [
     {
-     "price": 479.73,
+     "price": 474.33,
      "label": "空區"
     },
     {
-     "price": 422.5,
+     "price": 393.5,
      "label": "20日低"
     },
     {
-     "price": 515.93,
+     "price": 516.03,
      "label": "季線"
     }
    ]
@@ -73,24 +73,28 @@
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-10-30",
-   "close": 447,
-   "setup": "WAIT_DOWN",
-   "dir": 0,
-   "score": -43,
-   "atr": 38.417770684332304,
+   "date": "2026-11-02",
+   "close": 426,
+   "setup": "SHORT_BREAKDOWN",
+   "dir": -1,
+   "score": -52,
+   "atr": 37.60221563214706,
    "lines": [
     {
-     "price": 527.8,
-     "label": "空區"
+     "price": 426,
+     "label": "進場"
     },
     {
-     "price": 445,
-     "label": "20日低"
+     "price": 558.25,
+     "label": "停損"
     },
     {
-     "price": 549.13,
-     "label": "季線"
+     "price": 350.8,
+     "label": "T1"
+    },
+    {
+     "price": 275.59,
+     "label": "T2"
     }
    ]
   }
