@@ -1,23 +1,23 @@
 {
- "updated": "2026-11-04 18:09",
- "lastDate": "2026-11-04",
+ "updated": "2026-11-05 18:10",
+ "lastDate": "2026-11-05",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-11-04",
-   "close": 85.4,
+   "date": "2026-11-05",
+   "close": 79,
    "setup": "NEUTRAL",
    "dir": 0,
-   "score": 40,
-   "atr": 6.070449068359968,
+   "score": 27,
+   "atr": 6.165416992516461,
    "lines": [
     {
      "price": 130,
      "label": "壓力"
     },
     {
-     "price": 82,
+     "price": 81.5,
      "label": "支撐"
     }
    ]
@@ -25,23 +25,23 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-11-04",
-   "close": 421,
+   "date": "2026-11-05",
+   "close": 400.5,
    "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -49,
-   "atr": 37.78964364509947,
+   "score": -27,
+   "atr": 37.66181196052186,
    "lines": [
     {
-     "price": 540.88,
+     "price": 527.7,
      "label": "空區"
     },
     {
-     "price": 413.5,
+     "price": 391,
      "label": "20日低"
     },
     {
-     "price": 620.79,
+     "price": 617.4,
      "label": "季線"
     }
    ]
@@ -49,52 +49,44 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-11-04",
-   "close": 379.5,
-   "setup": "WAIT_DOWN",
+   "date": "2026-11-05",
+   "close": 342,
+   "setup": "OVERSOLD",
    "dir": 0,
-   "score": -27,
-   "atr": 31.630928708174952,
+   "score": -3,
+   "atr": 32.05014808655238,
    "lines": [
     {
-     "price": 459.15,
-     "label": "空區"
+     "price": 384.1,
+     "label": "MA5 觸發"
     },
     {
-     "price": 373.5,
-     "label": "20日低"
-    },
-    {
-     "price": 513.49,
-     "label": "季線"
+     "price": 448.85,
+     "label": "月線目標"
     }
    ]
   },
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-11-04",
-   "close": 376,
-   "setup": "SHORT_BREAKDOWN",
-   "dir": -1,
-   "score": -45,
-   "atr": 38.13405327465741,
+   "date": "2026-11-05",
+   "close": 346.5,
+   "setup": "WAIT_DOWN",
+   "dir": 0,
+   "score": -21,
+   "atr": 37.87447804063866,
    "lines": [
     {
-     "price": 376,
-     "label": "進場"
+     "price": 488.95,
+     "label": "空區"
     },
     {
-     "price": 539.66,
-     "label": "停損"
+     "price": 347.5,
+     "label": "20日低"
     },
     {
-     "price": 299.73,
-     "label": "T1"
-    },
-    {
-     "price": 223.46,
-     "label": "T2"
+     "price": 544.08,
+     "label": "季線"
     }
    ]
   }
