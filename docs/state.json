@@ -1,27 +1,27 @@
 {
- "updated": "2026-11-06 17:37",
- "lastDate": "2026-11-06",
+ "updated": "2026-11-09 20:55",
+ "lastDate": "2026-11-09",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-11-06",
-   "close": 77.2,
+   "date": "2026-11-09",
+   "close": 81.1,
    "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -7,
-   "atr": 6.382172920537493,
+   "score": 7,
+   "atr": 6.297731996196377,
    "lines": [
     {
-     "price": 94.18,
+     "price": 92.94,
      "label": "空區"
     },
     {
-     "price": 78,
+     "price": 71.1,
      "label": "20日低"
     },
     {
-     "price": 95.37,
+     "price": 95.45,
      "label": "季線"
     }
    ]
@@ -29,23 +29,23 @@
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-11-06",
-   "close": 360.5,
+   "date": "2026-11-09",
+   "close": 377.5,
    "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -27,
-   "atr": 37.82882539351879,
+   "score": -7,
+   "atr": 37.05533787147811,
    "lines": [
     {
-     "price": 513.23,
+     "price": 498.15,
      "label": "空區"
     },
     {
-     "price": 391,
+     "price": 360.5,
      "label": "20日低"
     },
     {
-     "price": 613.71,
+     "price": 609.33,
      "label": "季線"
     }
    ]
@@ -53,40 +53,48 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-11-06",
-   "close": 309,
-   "setup": "OVERSOLD",
+   "date": "2026-11-09",
+   "close": 339.5,
+   "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -16,
-   "atr": 32.18942322334192,
+   "score": -13,
+   "atr": 32.06875012760056,
    "lines": [
     {
-     "price": 364.1,
-     "label": "MA5 觸發"
+     "price": 427.98,
+     "label": "空區"
     },
     {
-     "price": 437.75,
-     "label": "月線目標"
+     "price": 308,
+     "label": "20日低"
+    },
+    {
+     "price": 505.13,
+     "label": "季線"
     }
    ]
   },
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-11-06",
-   "close": 317,
-   "setup": "OVERSOLD",
+   "date": "2026-11-09",
+   "close": 348.5,
+   "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -5,
-   "atr": 37.63344389361719,
+   "score": 4,
+   "atr": 37.195340761144806,
    "lines": [
     {
-     "price": 369.8,
-     "label": "MA5 觸發"
+     "price": 464.88,
+     "label": "空區"
     },
     {
-     "price": 476.4,
-     "label": "月線目標"
+     "price": 312,
+     "label": "20日低"
+    },
+    {
+     "price": 538.11,
+     "label": "季線"
     }
    ]
   }
