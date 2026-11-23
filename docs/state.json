@@ -1,47 +1,51 @@
 {
- "updated": "2026-11-19 19:05",
- "lastDate": "2026-11-19",
+ "updated": "2026-11-23 22:09",
+ "lastDate": "2026-11-23",
  "stocks": {
   "1727": {
    "name": "中華化",
    "market": "上市",
-   "date": "2026-11-19",
-   "close": 64.7,
-   "setup": "OVERSOLD",
+   "date": "2026-11-23",
+   "close": 59.6,
+   "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -16,
-   "atr": 5.87105988519545,
+   "score": -12,
+   "atr": 5.84392408467895,
    "lines": [
     {
-     "price": 73,
-     "label": "MA5 觸發"
+     "price": 79.91,
+     "label": "空區"
     },
     {
-     "price": 83.62,
-     "label": "月線目標"
+     "price": 58.3,
+     "label": "20日低"
+    },
+    {
+     "price": 93.59,
+     "label": "季線"
     }
    ]
   },
   "3363": {
    "name": "上詮",
    "market": "上櫃",
-   "date": "2026-11-19",
-   "close": 284.5,
+   "date": "2026-11-23",
+   "close": 247.5,
    "setup": "WAIT_DOWN",
    "dir": 0,
    "score": -20,
-   "atr": 35.81467383674824,
+   "atr": 34.55959121640855,
    "lines": [
     {
-     "price": 415.88,
+     "price": 388.33,
      "label": "空區"
     },
     {
-     "price": 290,
+     "price": 256.5,
      "label": "20日低"
     },
     {
-     "price": 576.11,
+     "price": 565.06,
      "label": "季線"
     }
    ]
@@ -49,23 +53,23 @@
   "3450": {
    "name": "聯鈞",
    "market": "上市",
-   "date": "2026-11-19",
-   "close": 285.5,
+   "date": "2026-11-23",
+   "close": 258.5,
    "setup": "WAIT_DOWN",
    "dir": 0,
-   "score": -29,
-   "atr": 31.847261627397508,
+   "score": -12,
+   "atr": 31.600444974056746,
    "lines": [
     {
-     "price": 372.25,
+     "price": 354.33,
      "label": "空區"
     },
     {
-     "price": 289.5,
+     "price": 257,
      "label": "20日低"
     },
     {
-     "price": 478.99,
+     "price": 469.95,
      "label": "季線"
     }
    ]
@@ -73,24 +77,28 @@
   "4979": {
    "name": "華星光",
    "market": "上櫃",
-   "date": "2026-11-19",
-   "close": 295.5,
-   "setup": "WAIT_DOWN",
-   "dir": 0,
-   "score": -45,
-   "atr": 35.137481571515295,
+   "date": "2026-11-23",
+   "close": 255,
+   "setup": "SHORT_BREAKDOWN",
+   "dir": -1,
+   "score": -28,
+   "atr": 34.14660401136863,
    "lines": [
     {
-     "price": 391.6,
-     "label": "空區"
+     "price": 255,
+     "label": "進場"
     },
     {
-     "price": 300.5,
-     "label": "20日低"
+     "price": 404.9,
+     "label": "停損"
     },
     {
-     "price": 512.9,
-     "label": "季線"
+     "price": 186.71,
+     "label": "T1"
+    },
+    {
+     "price": 118.41,
+     "label": "T2"
     }
    ]
   }
